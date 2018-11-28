@@ -62,5 +62,36 @@ public class MapRenderer {
      */
     public static void render(Canvas canvas, Cell[][] map) {
         //TODO
+    int rows=map[0].length; int cols=map.length;
+    double canvas_height=cols*tile.getHeight(); double canvas_width=rows*tile.getWidth();
+
+    canvas.setWidth(canvas_width);
+    canvas.setHeight(canvas_height);
+
+        for(int x =0; x< rows; x++) {
+            for (int y = 0; y < cols; y++) {
+                int dx = (int)(x*tile.getWidth());
+                int dy = (int)(y*tile.getHeight());
+
+//System.out.print(map[y][x]);
+        if(map[y][x] instanceof DestTile && ( !((Occupiable)map[y][x]).getOccupant().isPresent() ) ){canvas.getGraphicsContext2D().drawImage(dest, dx, dy);}
+        else if(map[y][x] instanceof DestTile && ( ((Occupiable)map[y][x]).getOccupant().isPresent() ) && ( ((Occupiable)map[y][x]).getOccupant().get() instanceof Player ) )
+        {canvas.getGraphicsContext2D().drawImage(playerOnDest, dx, dy);}
+        else if(map[y][x] instanceof DestTile && ( ((Occupiable)map[y][x]).getOccupant().isPresent() )  )
+        {canvas.getGraphicsContext2D().drawImage(crateOnDest, dx, dy);}
+        else if(! (map[y][x] instanceof Occupiable) )
+        {canvas.getGraphicsContext2D().drawImage(wall, dx, dy);}
+        else if( map[y][x] instanceof Occupiable && ( ((Occupiable)map[y][x]).getOccupant().isPresent() ) && ( ((Occupiable)map[y][x]).getOccupant().get() instanceof Player ))
+        {canvas.getGraphicsContext2D().drawImage(playerOnTile, dx, dy);}
+        else if( map[y][x] instanceof Occupiable && ( ((Occupiable)map[y][x]).getOccupant().isPresent() ) )
+        {canvas.getGraphicsContext2D().drawImage(crateOnTile, dx, dy);}
+        else if( map[y][x] instanceof Occupiable && ( !((Occupiable)map[y][x]).getOccupant().isPresent() ) )
+        {canvas.getGraphicsContext2D().drawImage(tile, dx, dy);}
+
+
+
+            }
+        }
+
     }
 }

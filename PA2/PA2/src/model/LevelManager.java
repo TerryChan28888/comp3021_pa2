@@ -66,7 +66,7 @@ public class LevelManager {
     // leave this later ......
     public void loadLevelNamesFromDisk() {
         //TODO
-
+        levelNames.clear();
         try{
             // sample doesn't show folder in ListView
 //            System.out.println(mapDirectory);
@@ -124,13 +124,14 @@ for(Object l : new_levelNames){levelNames.add(l.toString());}
      */
     public void setLevel(String levelName) throws InvalidMapException {
         //TODO
-//        curGameLevelExistedDuration = 0;
+        curLevelNameProperty.setValue(levelName);
+        curGameLevelExistedDuration.setValue(0);
 //        GameLevel new_game = new GameLevel();
         try{
 //            if(levelName==null){throw new InvalidMapException();}else{}
 
-            System.out.print(levelName);
-            gameLevel.loadMap(levelName);
+
+            gameLevel.loadMap(mapDirectory+"\\"  +levelName);
         }catch(InvalidMapException e){System.out.println("what can i do, now?");e.printStackTrace();throw e;}
         finally {}
     }
@@ -143,6 +144,14 @@ for(Object l : new_levelNames){levelNames.add(l.toString());}
      */
     public void startLevelTimer() {
         //TODO
+        t.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+//                timerSeconds.setValue(timerSeconds.getValue()+1);
+                Platform.runLater(()->{curGameLevelExistedDuration.setValue(curGameLevelExistedDuration.getValue()+1);});
+//                System.out.print('a');
+            }
+        }, 1000,1000);
     }
 
     /**

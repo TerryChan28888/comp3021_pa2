@@ -15,10 +15,18 @@ import model.Map.Cell;
 import viewmodel.MapRenderer;
 import viewmodel.SceneManager;
 
-// is it needed? and the next?
+// is it needed? and the next 6?
 import javafx.stage.Stage;
+import model.Map.Map;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+//import model.Map.Occupiable.DestTile;
+//import model.Map.Occupiable.Occupiable;
+//import model.Map.Occupiable.Tile;
+//import model.Map.Wall; //
 
 import java.io.File;
+
 
 /**
  * Represents the main menu in the game
@@ -105,11 +113,12 @@ public class LevelSelectPane extends BorderPane {
             playButton.setOnMouseClicked(
                     e->{ //after lunch, handle the exception
                         // not sure if it is ok...?
-                        try{LevelManager.getInstance().setLevel(
-//                               "C:\\Users\\Chen\\Desktop\\comp3021(2018_fall)\\PA2\\PA2\\PA2\\src\\assets\\maps\\"+ levelsListView.getSelectionModel().getSelectedItem()
-//                                "PA2\\PA2\\PA2\\src\\assets\\maps\\"+ levelsListView.getSelectionModel().getSelectedItem()
-                                LevelManager.getInstance().getMapDirectory()+"\\"  + levelsListView.getSelectionModel().getSelectedItem()
-                        );}catch(InvalidMapException ex){ex.printStackTrace();}
+//                        try{LevelManager.getInstance().setLevel(
+////                               "C:\\Users\\Chen\\Desktop\\comp3021(2018_fall)\\PA2\\PA2\\PA2\\src\\assets\\maps\\"+ levelsListView.getSelectionModel().getSelectedItem()
+////                                "PA2\\PA2\\PA2\\src\\assets\\maps\\"+ levelsListView.getSelectionModel().getSelectedItem()
+////                                LevelManager.getInstance().getMapDirectory()+"\\"  +
+//                                        levelsListView.getSelectionModel().getSelectedItem()
+//                        );}catch(InvalidMapException ex){ex.printStackTrace();}
                         SceneManager.getInstance().showGamePlayScene();
                         LevelManager.getInstance().startLevelTimer();
                     }
@@ -121,32 +130,105 @@ public class LevelSelectPane extends BorderPane {
 
             levelsListView.getSelectionModel().selectedItemProperty().addListener(
                             (ObservableValue)->{
-                                File f = new File(LevelManager.getInstance().getMapDirectory()+"\\"  + levelsListView.getSelectionModel().getSelectedItem() );
-                                Scanner reader = new Scanner(f);
+//                                File f = new File(LevelManager.getInstance().getMapDirectory()+"\\"  + levelsListView.getSelectionModel().getSelectedItem() );
 
+                                // is it...?
+                                // cannot import wall, it means should not depend on Map method!!! ( and perhaps GameLevel method?)
 
-                                    int numRows = reader.nextInt();
-                                    int numCols = reader.nextInt();
-                                    reader.nextLine();
+//                                try (Scanner reader = new Scanner(f)) {
+//                                    int numRows = reader.nextInt();
+//                                    int numCols = reader.nextInt();
+//                                    reader.nextLine();
+//
+//                                    char[][] rep = new char[numRows][numCols];
+//                                    for (int r = 0; r < numRows; r++) {
+//                                        String row = reader.nextLine();
+//                                        for (int c = 0; c < numCols; c++) {
+//                                            rep[r][c] = row.charAt(c);
+//                                        }
+//                                    }
+//                                }
+//
+//                                    Cell[][] preview_map = new Cell[numRows][numCols];
+//
+//                                    for (int i = 0; i <  numRows; i++) {
+//                                        for (int j = 0; j < numCols; j++) {
+//
+//                                            char c = rep[i][j];
+//
+//                                            if (c == '#') {
+//                                                preview_map[i][j] = new Wall();
+//
+//                                            } else if (c == '@') {
+//                                                preview_map[i][j] = new Tile();
+//
+//                                            } else if (c == '.') {
+//                                                preview_map[i][j] = new Tile();
+//
+//                                            } else if (c=='C') {
+//
+//                                                preview_map[i][j] = new DestTile();
+//
+//
+//                                            } else if (c=='c') {
+//
+//                                                preview_map[i][j] = new Tile();
+//
+//
+//                                            }
+//
+//                                        }
+//                                    }
+//
+//
+//                                    MapRenderer.render(levelPreview, preview_map);
+//
+//                                } catch (FileNotFoundException e) {
+//                                    e.printStackTrace();
+//                                } catch (InvalidMapException e) {
+//                                    e.printStackTrace();
+//                                    throw e;
+//                                }
+//                                finally {
+//
+//                                }
+//                                try{
+//                               "C:\\Users\\Chen\\Desktop\\comp3021(2018_fall)\\PA2\\PA2\\PA2\\src\\assets\\maps\\"+ levelsListView.getSelectionModel().getSelectedItem()
+//                                "PA2\\PA2\\PA2\\src\\assets\\maps\\"+ levelsListView.getSelectionModel().getSelectedItem()
+//                                File f = new File(LevelManager.getInstance().getMapDirectory()+"\\"  + levelsListView.getSelectionModel().getSelectedItem() );
+//
+//                                    Scanner reader = new Scanner(f);
+//                                        int numRows = reader.nextInt();
+//                                        int numCols = reader.nextInt();
+//                                        reader.nextLine();
+//
+//                                        char[][] rep = new char[numRows][numCols];
+//                                        for (int r = 0; r < numRows; r++) {
+//                                            String row = reader.nextLine();
+//                                            for (int c = 0; c < numCols; c++) {
+//                                                rep[r][c] = row.charAt(c);
+//                                            }
+//                                        }
+//                                }
+//                                catch (FileNotFoundException e) {e.printStackTrace();}
 
-                                    char[][] rep = new char[numRows][numCols];
-                                    for (int r = 0; r < numRows; r++) {
-                                        String row = reader.nextLine();
-                                        for (int c = 0; c < numCols; c++) {
-                                            rep[r][c] = row.charAt(c);
-                                        }
-                                    }
-                                Cell[][] preview_map = new Map();
-                                    preview_map.initialize(numRows, numCols, rep);
+//                                levelPreview=null;
+//                                levelPreview = new Canvas();
+//                                centerContainer.getChildren().add(levelPreview);
+                                levelPreview.getGraphicsContext2D().clearRect(0,0,levelPreview.getWidth(),levelPreview.getHeight());
+                                try{
+                                    LevelManager.getInstance().setLevel(
+                                        levelsListView.getSelectionModel().getSelectedItem()
 
-                                MapRenderer.render(levelPreview, preview_map);
-
-
-
-
-
-
-
+                                );
+//                                    System.out.println(levelsListView.getSelectionModel().getSelectedItem());
+                                MapRenderer.render(levelPreview, LevelManager.getInstance().getGameLevel().getMap().getCells());
+//                                    LevelManager.getInstance().getGameLevel().getMap().player;
+                                }
+                                catch(InvalidMapException ex){ex.printStackTrace();}
+                                // is it...?
+                                // it is possible to handle invalid input file, try it later
+                                catch(Exception ex){ex.printStackTrace();}
                                 playButton.setDisable(false);
                             }
                     );

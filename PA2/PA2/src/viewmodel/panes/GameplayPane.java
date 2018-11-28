@@ -44,16 +44,17 @@ public class GameplayPane extends BorderPane {
     public GameplayPane() {
         //TODO
         // err is for debugging
-        IntegerProperty err = new SimpleIntegerProperty(3);
+//        IntegerProperty err = new SimpleIntegerProperty(3);
         info = new GameplayInfoPane(LevelManager.getInstance().currentLevelNameProperty(), LevelManager.getInstance().curGameLevelExistedDurationProperty(),
-//                GameLevel.numPushesProperty()
-                err
+                LevelManager.getInstance().getGameLevel().numPushesProperty()
+//                err
                 , LevelManager.getInstance().curGameLevelNumRestartsProperty());
         canvasContainer = new VBox(20);
         gamePlayCanvas = new Canvas();
         buttonBar = new HBox();
         restartButton = new Button("Restart");
         quitToMenuButton = new Button("Quit to menu");
+
 
         connectComponents();
 
@@ -66,9 +67,9 @@ public class GameplayPane extends BorderPane {
      */
     private void connectComponents() {
         //TODO
-        buttonBar.getChildren().addAll(restartButton, quitToMenuButton);
+        buttonBar.getChildren().addAll(info,restartButton, quitToMenuButton);
         canvasContainer.getChildren().addAll(
-                info,
+
                 gamePlayCanvas
                 );
         this.setCenter(canvasContainer);
@@ -80,12 +81,14 @@ public class GameplayPane extends BorderPane {
      */
     private void styleComponents() {
         //TODO
-        restartButton.setStyle(Config.CSS_STYLES);
-        quitToMenuButton.setStyle(Config.CSS_STYLES);
-        buttonBar.setStyle(Config.CSS_STYLES);
-        info.setStyle(Config.CSS_STYLES);
-        gamePlayCanvas.setStyle(Config.CSS_STYLES);
-        canvasContainer.setStyle(Config.CSS_STYLES);
+        restartButton.getStyleClass().add("big-button");
+        quitToMenuButton.getStyleClass().add("big-button");
+        buttonBar.getStyleClass().add("big-vbox");
+        info.getStyleClass().add("    -fx-padding: 20 20 20 20;\n" +
+                "    -fx-background-color: #ddd;");
+//        gamePlayCanvas.setStyle(Config.CSS_STYLES);
+        renderCanvas();
+        canvasContainer.getStyleClass().add("side-menu");
     }
 
     /**
@@ -153,5 +156,8 @@ public class GameplayPane extends BorderPane {
      */
     private void renderCanvas() {
         //TODO
+        gamePlayCanvas.getGraphicsContext2D().clearRect(0,0,gamePlayCanvas.getWidth(),gamePlayCanvas.getHeight());
+        MapRenderer.render(gamePlayCanvas, LevelManager.getInstance().getGameLevel().getMap().getCells());
+
     }
 }

@@ -35,6 +35,7 @@ public class GameLevel {
      * @throws InvalidMapException when the map is invalid
      */
     public void loadMap(String filename) throws InvalidMapException {
+//                    System.out.print(filename);
         File f = new File(filename);
         try (Scanner reader = new Scanner(f)) {
             int numRows = reader.nextInt();
@@ -48,7 +49,8 @@ public class GameLevel {
                     rep[r][c] = row.charAt(c);
                 }
             }
-
+            // the follw is for debug
+//System.out.println(rep[0]);
             map = new Map();
             map.initialize(numRows, numCols, rep);
         } catch (FileNotFoundException e) {

@@ -2,6 +2,7 @@ package viewmodel.customNodes;
 
 import javafx.beans.Observable;
 import javafx.beans.binding.Bindings;
+
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.control.Label;
@@ -9,6 +10,8 @@ import javafx.scene.layout.VBox;
 
 import java.util.concurrent.Callable;
 
+// is it...? is the following neccessary?
+import javafx.beans.binding.StringBinding;
 /**
  * Displays info about the current level being played by the user.
  */
@@ -68,5 +71,45 @@ public class GameplayInfoPane extends VBox {
      */
     private void bindTo(StringProperty levelNameProperty, IntegerProperty timerProperty, IntegerProperty numMovesProperty, IntegerProperty numRestartsProperty) {
         //TODO
+        timerLabel.textProperty().bind(
+                new StringBinding() {
+                    {bind(timerProperty);}
+                    @Override
+                    protected String computeValue() {
+                        return "Timer : "+format(timerProperty.get());
+                    }
+                }
+        );
+
+        levelNameLabel.textProperty().bind(
+                new StringBinding() {
+                    {bind(levelNameProperty);}
+                    @Override
+                    protected String computeValue() {
+                        return "Level : "+levelNameProperty.get();
+                    }
+                }
+        );
+
+        numMovesLabel.textProperty().bind(
+                new StringBinding() {
+                    {bind(numMovesProperty);}
+                    @Override
+                    protected String computeValue() {
+                        return "Moves : "+numMovesProperty.get();
+                    }
+                }
+        );
+
+        numRestartsLabel.textProperty().bind(
+                new StringBinding() {
+                    {bind(numRestartsProperty);}
+                    @Override
+                    protected String computeValue() {
+                        return "Restarts : "+numRestartsProperty.get();
+                    }
+                }
+        );
+
     }
 }
