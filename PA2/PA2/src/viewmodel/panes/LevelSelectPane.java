@@ -119,6 +119,8 @@ public class LevelSelectPane extends BorderPane {
 ////                                LevelManager.getInstance().getMapDirectory()+"\\"  +
 //                                        levelsListView.getSelectionModel().getSelectedItem()
 //                        );}catch(InvalidMapException ex){ex.printStackTrace();}
+                        LevelManager.getInstance().currentLevelNameProperty().setValue(levelsListView.getSelectionModel().getSelectedItem());
+//                        System.out.println(levelsListView.getSelectionModel().getSelectedItem()) ;
                         SceneManager.getInstance().showGamePlayScene();
                         LevelManager.getInstance().startLevelTimer();
                     }
@@ -219,8 +221,8 @@ public class LevelSelectPane extends BorderPane {
                                 try{
                                     LevelManager.getInstance().setLevel(
                                         levelsListView.getSelectionModel().getSelectedItem()
-
                                 );
+//                                    System.out.println("This is unexpected!!!! : "+levelsListView.getSelectionModel().getSelectedItem());
 //                                    System.out.println(levelsListView.getSelectionModel().getSelectedItem());
                                 MapRenderer.render(levelPreview, LevelManager.getInstance().getGameLevel().getMap().getCells());
 //                                    LevelManager.getInstance().getGameLevel().getMap().player;
@@ -230,6 +232,7 @@ public class LevelSelectPane extends BorderPane {
                                 // it is possible to handle invalid input file, try it later
                                 catch(Exception ex){ex.printStackTrace();}
                                 playButton.setDisable(false);
+
                             }
                     );
     }

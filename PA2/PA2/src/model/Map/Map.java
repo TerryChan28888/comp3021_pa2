@@ -20,7 +20,8 @@ public class Map {
     private ArrayList<DestTile> destTiles = new ArrayList<>();
     private ArrayList<Crate> crates = new ArrayList<>();
 
-    private Player player;
+    // for debugging, set to public, originally private
+    public Player player;
 
     /**
      * This function instantiates and initializes cells, destTiles, crates to the correct map elements (e.g. the # char
@@ -136,7 +137,7 @@ public class Map {
                 newR++;
                 break;
             case LEFT:
-                newC--;
+                newC--;//System.out.println('A');
                 break;
             case RIGHT:
                 newC++;

@@ -7,6 +7,7 @@ import javafx.geometry.Pos;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -17,6 +18,7 @@ import model.LevelManager;
 //is this needed?
 import model.GameLevel;
 
+import model.Map.Map;
 import viewmodel.AudioManager;
 import viewmodel.Config;
 import viewmodel.MapRenderer;
@@ -102,9 +104,80 @@ public class GameplayPane extends BorderPane {
      * and generating the popups. If deadlock, play the deadlock sound, and do the appropriate action regarding the timers
      * and generating the popups.
      */
-    // do this later ......
+    // is it...?
+    // A VERY LARGE PROBLEM: how to reactivate the timer after "next level" is clicked?????
     private void setCallbacks() {
         //TODO
+this.setOnKeyPressed(
+        e->{
+            switch(e.getCode()){
+                case W :
+//                    LevelManager.getInstance().getGameLevel().getMap().movePlayer(Map.Direction.UP);System.out.println('W');
+                if( LevelManager.getInstance().getGameLevel().makeMove('w') ){
+                    renderCanvas();
+//                    LevelManager.getInstance().incrementNumRestarts();
+                    if( LevelManager.getInstance().getGameLevel().isWin() ){
+                        LevelManager.getInstance().resetLevelTimer();
+                        createLevelClearPopup();
+
+//                        LevelManager.getInstance().resetNumRestarts();
+                    }
+                    else if( LevelManager.getInstance().getGameLevel().isDeadlocked() ){}
+                }
+                break;
+                case S :
+//                    LevelManager.getInstance().getGameLevel().getMap().movePlayer(Map.Direction.DOWN);System.out.println('S');
+                    if( LevelManager.getInstance().getGameLevel().makeMove('s') ){
+                        renderCanvas();
+//                        LevelManager.getInstance().incrementNumRestarts();
+                        if( LevelManager.getInstance().getGameLevel().isWin() ){
+                            LevelManager.getInstance().resetLevelTimer();
+                            createLevelClearPopup();
+
+//                            LevelManager.getInstance().resetNumRestarts();
+                        }
+                        else if( LevelManager.getInstance().getGameLevel().isDeadlocked() ){}
+                    }
+                break;
+                case D :
+//                    LevelManager.getInstance().getGameLevel().getMap().movePlayer(Map.Direction.RIGHT);System.out.println('D');
+                    if( LevelManager.getInstance().getGameLevel().makeMove('d') ){
+                        renderCanvas();
+//                        LevelManager.getInstance().incrementNumRestarts();
+                        if( LevelManager.getInstance().getGameLevel().isWin() ){
+                            LevelManager.getInstance().resetLevelTimer();
+                            createLevelClearPopup();
+
+//                            LevelManager.getInstance().resetNumRestarts();
+                        }
+                        else if( LevelManager.getInstance().getGameLevel().isDeadlocked() ){}
+                    }break;
+                case A :
+//                    System.out.println( LevelManager.getInstance().getGameLevel().getMap().player.getC()  );
+//                    System.out.println( LevelManager.getInstance().getGameLevel().getMap().player.getR()  );
+//
+//                    LevelManager.getInstance().getGameLevel().getMap().movePlayer(Map.Direction.LEFT);
+//
+//                System.out.println( LevelManager.getInstance().getGameLevel().getMap().player.getC()  );
+//                    System.out.println( LevelManager.getInstance().getGameLevel().getMap().player.getR()  );
+
+                    if( LevelManager.getInstance().getGameLevel().makeMove('a') ){
+                        renderCanvas();
+//                        LevelManager.getInstance().incrementNumRestarts();
+                        if( LevelManager.getInstance().getGameLevel().isWin() ){
+                            LevelManager.getInstance().resetLevelTimer();
+                            createLevelClearPopup();
+
+//                            LevelManager.getInstance().resetNumRestarts();
+                        }
+                        else if( LevelManager.getInstance().getGameLevel().isDeadlocked() ){}
+                    }break;
+            }
+        }
+);
+
+        restartButton.setOnMouseClicked(e->doRestartAction());
+        quitToMenuButton.setOnMouseClicked(e->doQuitToMenuAction());
 
     }
 
@@ -115,6 +188,22 @@ public class GameplayPane extends BorderPane {
      */
     private void doQuitToMenuAction() {
         //TODO
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Game progress will be lost.", ButtonType.OK, ButtonType.CANCEL);
+        alert.setTitle("Confirm");
+        alert.setHeaderText("Return to menu?");
+        alert.showAndWait().ifPresent(response -> {
+            if(response == ButtonType.OK){
+                LevelManager.getInstance().getGameLevel().numPushesProperty().set(0);
+                gamePlayCanvas.getGraphicsContext2D().clearRect(0,0,gamePlayCanvas.getWidth(),gamePlayCanvas.getHeight());
+                LevelManager.getInstance().resetNumRestarts();
+                SceneManager.getInstance().showMainMenuScene();
+                LevelManager.getInstance().resetLevelTimer();
+            }
+//            else if(response == ButtonType.CANCEL){
+//
+//            }
+
+        });
     }
 
     /**
@@ -125,6 +214,8 @@ public class GameplayPane extends BorderPane {
      */
     private void createDeadlockedPopup() {
         //TODO
+
+
     }
 
     /**
@@ -137,8 +228,44 @@ public class GameplayPane extends BorderPane {
      * Take care of the edge case for when the user clears the last level. In this case, there shouldn't
      * be an option to go to the next level.
      */
+
+    //is it...?
+    // edge  case and return button have not been finished!!!
     private void createLevelClearPopup() {
         //TODO
+        ButtonType next_level = new ButtonType("Next level");
+        ButtonType return_button = new ButtonType("Return");
+
+//        next_level.setOnAction()
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "", next_level, return_button);
+        alert.setTitle("Confirm");
+        alert.setHeaderText("Level cleared!");
+        alert.showAndWait().ifPresent(response -> {
+            if (response == next_level) {
+
+                try{
+                    LevelManager.getInstance().getGameLevel().numPushesProperty().set(0);
+                    LevelManager.getInstance().setLevel(
+                            LevelManager.getInstance().getNextLevelName()
+
+                    );
+                    renderCanvas();
+
+                }
+                catch(InvalidMapException ex){ex.printStackTrace();}
+
+                catch(Exception ex){ex.printStackTrace();}
+                LevelManager.getInstance().resetNumRestarts();
+//                LevelManager.getInstance().resetLevelTimer();
+                LevelManager.getInstance().startLevelTimer();
+//                System.out.println("did the timer started????");
+//                System.out.println("it's nest level!!!!!!!!huh!!!!!!");
+            }
+            else if (response == return_button){
+                System.out.print("return!!!!!!!!!waghhhhhhhhhhhhh!!!!!!!!!");
+            }
+        });
     }
 
     /**
@@ -147,6 +274,23 @@ public class GameplayPane extends BorderPane {
      */
     private void doRestartAction() {
         //TODO
+//        levelsListView.getSelectionModel().clearSelection();
+        LevelManager.getInstance().getGameLevel().numPushesProperty().set(0);
+
+        try{
+
+            LevelManager.getInstance().setLevel(
+                    LevelManager.getInstance().currentLevelNameProperty().get()
+            );
+            renderCanvas();
+
+        }
+        catch(InvalidMapException ex){ex.printStackTrace();}
+        catch(Exception ex){ex.printStackTrace();}
+//        LevelManager.getInstance().resetLevelTimer();
+        LevelManager.getInstance().resetLevelTimer();
+        LevelManager.getInstance().startLevelTimer();
+        LevelManager.getInstance().incrementNumRestarts();
     }
 
     /**
@@ -156,6 +300,8 @@ public class GameplayPane extends BorderPane {
      */
     private void renderCanvas() {
         //TODO
+        // is it...?
+        // perhaps should consider Invalid file error?
         gamePlayCanvas.getGraphicsContext2D().clearRect(0,0,gamePlayCanvas.getWidth(),gamePlayCanvas.getHeight());
         MapRenderer.render(gamePlayCanvas, LevelManager.getInstance().getGameLevel().getMap().getCells());
 

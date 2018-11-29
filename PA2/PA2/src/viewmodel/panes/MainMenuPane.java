@@ -12,6 +12,9 @@ import viewmodel.SceneManager;
 /**
  * Represents the main menu in the game
  */
+
+// is it...?
+    // after complete one or more level, then go back to main menu, then press play button, will cause error, dunno why
 public class MainMenuPane extends BorderPane {
 
     private VBox container;
