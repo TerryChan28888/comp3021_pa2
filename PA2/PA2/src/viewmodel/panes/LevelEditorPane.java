@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.layout.HBox;
 import viewmodel.Config;
 import viewmodel.LevelEditorCanvas;
 import viewmodel.SceneManager;
@@ -56,14 +57,14 @@ public class LevelEditorPane extends BorderPane {
         colBox=new BorderPane();
         newGridButton = new Button("New Grid");
         brushList = FXCollections.observableArrayList(Brush.values()); // may be problematic, is it...?
-
+        selectedBrush.setItems(brushList);
         saveButton = new Button("Save");
         centerContainer = new VBox(20);
 
-
-
         connectComponents();
+        styleComponents();
 
+        setCallbacks();
 
 
     }
@@ -76,11 +77,21 @@ public class LevelEditorPane extends BorderPane {
      */
     private void connectComponents() {
         //TODO
+//        rowBox.getChildren().addAll(rowText,rowField);
+        rowBox.setLeft(rowText);rowBox.setRight(rowField);
+
+//        colBox.getChildren().addAll(colText,colField);
+        colBox.setLeft(colText);colBox.setRight(colField); // I waste a lot of time on this: not getChildren, but setLeft or setRight, the one design it is cold blood
+
         leftContainer.getChildren().addAll(
-                returnButton, rowText,rowField,colText,colField,rowBox,colBox,newGridButton,saveButton
+                returnButton,rowBox,colBox,newGridButton,selectedBrush,saveButton
 
         );
         centerContainer.getChildren().add(levelEditor);
+//        rowBox.setLeft(rowText);rowBox.setRight(rowField);
+//        colBox.setLeft(colText);colBox.setRight(colField);
+        this.setLeft(leftContainer);
+        this.setCenter(centerContainer);
     }
 
     /**
@@ -88,6 +99,16 @@ public class LevelEditorPane extends BorderPane {
      */
     private void styleComponents() {
         //TODO
+//        rowText.getStyleClass().add("root");
+//        colText.getStyleClass().add("root");
+        leftContainer.getStyleClass().add("side-menu");
+        centerContainer.getStyleClass().add("big-vbox");
+        returnButton.getStyleClass().add("big-button");
+        rowField.getStyleClass().add("text-field");
+        colField.getStyleClass().add("text-field");
+        newGridButton.getStyleClass().add("big-button");
+        saveButton.getStyleClass().add("big-button");
+        selectedBrush.setPrefHeight(200);
     }
 
     /**
@@ -102,5 +123,9 @@ public class LevelEditorPane extends BorderPane {
      */
     private void setCallbacks() {
         //TODO
+        returnButton.setOnMouseClicked(e->{SceneManager.getInstance().showMainMenuScene();});
+
+newGridButton.setOnMouseClicked(()->{;});
+
     }
 }

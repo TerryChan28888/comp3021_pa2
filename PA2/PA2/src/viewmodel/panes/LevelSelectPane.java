@@ -15,15 +15,9 @@ import model.Map.Cell;
 import viewmodel.MapRenderer;
 import viewmodel.SceneManager;
 
-// is it needed? and the next 6?
+// is it needed?
 import javafx.stage.Stage;
-import model.Map.Map;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
-//import model.Map.Occupiable.DestTile;
-//import model.Map.Occupiable.Occupiable;
-//import model.Map.Occupiable.Tile;
-//import model.Map.Wall; //
+
 
 import java.io.File;
 
@@ -80,6 +74,7 @@ public class LevelSelectPane extends BorderPane {
      */
     private void styleComponents() {
         //TODO
+        levelsListView.setPrefHeight(300);
         leftContainer.getStyleClass().add("side-menu");
         returnButton.getStyleClass().add("big-button");
         playButton.getStyleClass().add("big-button");

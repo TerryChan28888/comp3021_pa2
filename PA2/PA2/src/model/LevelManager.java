@@ -124,17 +124,20 @@ for(Object l : new_levelNames){levelNames.add(l.toString());}
      */
     public void setLevel(String levelName) throws InvalidMapException {
         //TODO
-        curGameLevelExistedDuration.setValue(0);
-        curLevelNameProperty.setValue(levelName);
+        if(levelName==null){}
+        else {
+            curGameLevelExistedDuration.setValue(0);
+            curLevelNameProperty.setValue(levelName);
 
 //        GameLevel new_game = new GameLevel();
-        try{
+//        try{
 //            if(levelName==null){throw new InvalidMapException();}else{}
 
 
-            gameLevel.loadMap(mapDirectory+"\\"  +levelName);
-        }catch(InvalidMapException e){System.out.println("what can i do, now?");e.printStackTrace();throw e;}
-        finally {}
+            gameLevel.loadMap(mapDirectory + "\\" + levelName);
+//        }catch(InvalidMapException e){System.out.println("what can i do, now?");e.printStackTrace();throw e;}
+//        finally {}
+        }
     }
 
     /**

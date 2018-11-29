@@ -70,7 +70,7 @@ public class GameplayPane extends BorderPane {
     private void connectComponents() {
         //TODO
         buttonBar.getChildren().addAll(info,restartButton, quitToMenuButton);
-        canvasContainer.getChildren().addAll(
+        canvasContainer.getChildren().add(
 
                 gamePlayCanvas
                 );
@@ -91,6 +91,7 @@ public class GameplayPane extends BorderPane {
 //        gamePlayCanvas.setStyle(Config.CSS_STYLES);
         renderCanvas();
         canvasContainer.getStyleClass().add("side-menu");
+        canvasContainer.setAlignment( Pos.BOTTOM_CENTER );
     }
 
     /**
@@ -122,7 +123,7 @@ this.setOnKeyPressed(
 
 //                        LevelManager.getInstance().resetNumRestarts();
                     }
-                    else if( LevelManager.getInstance().getGameLevel().isDeadlocked() ){}
+                    else if( LevelManager.getInstance().getGameLevel().isDeadlocked() ){createDeadlockedPopup();}
                 }
                 break;
                 case S :
@@ -136,7 +137,7 @@ this.setOnKeyPressed(
 
 //                            LevelManager.getInstance().resetNumRestarts();
                         }
-                        else if( LevelManager.getInstance().getGameLevel().isDeadlocked() ){}
+                        else if( LevelManager.getInstance().getGameLevel().isDeadlocked() ){createDeadlockedPopup();}
                     }
                 break;
                 case D :
@@ -150,7 +151,7 @@ this.setOnKeyPressed(
 
 //                            LevelManager.getInstance().resetNumRestarts();
                         }
-                        else if( LevelManager.getInstance().getGameLevel().isDeadlocked() ){}
+                        else if( LevelManager.getInstance().getGameLevel().isDeadlocked() ){createDeadlockedPopup();}
                     }break;
                 case A :
 //                    System.out.println( LevelManager.getInstance().getGameLevel().getMap().player.getC()  );
@@ -170,7 +171,7 @@ this.setOnKeyPressed(
 
 //                            LevelManager.getInstance().resetNumRestarts();
                         }
-                        else if( LevelManager.getInstance().getGameLevel().isDeadlocked() ){}
+                        else if( LevelManager.getInstance().getGameLevel().isDeadlocked() ){createDeadlockedPopup();}
                     }break;
             }
         }
@@ -214,7 +215,27 @@ this.setOnKeyPressed(
      */
     private void createDeadlockedPopup() {
         //TODO
+        ButtonType restart_button = new ButtonType("Restart");
+        ButtonType return_button = new ButtonType("Return");
 
+//        next_level.setOnAction()
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "", restart_button, return_button);
+        alert.setTitle("Confirm");
+        alert.setHeaderText("Level deadlocked!");
+        alert.showAndWait().ifPresent(response -> {
+            if (response == restart_button) {
+                doRestartAction();
+            }
+            else if (response == return_button){
+                System.out.print("return!!!!!!!!!waghhhhhhhhhhhhh!!!!!!!!!");
+                LevelManager.getInstance().getGameLevel().numPushesProperty().set(0);
+                gamePlayCanvas.getGraphicsContext2D().clearRect(0,0,gamePlayCanvas.getWidth(),gamePlayCanvas.getHeight());
+                LevelManager.getInstance().resetNumRestarts();
+                SceneManager.getInstance().showLevelSelectMenuScene();
+                LevelManager.getInstance().resetLevelTimer();
+            }
+        });
 
     }
 
@@ -264,6 +285,10 @@ this.setOnKeyPressed(
             }
             else if (response == return_button){
                 System.out.print("return!!!!!!!!!waghhhhhhhhhhhhh!!!!!!!!!");
+                LevelManager.getInstance().getGameLevel().numPushesProperty().set(0);
+                gamePlayCanvas.getGraphicsContext2D().clearRect(0,0,gamePlayCanvas.getWidth(),gamePlayCanvas.getHeight());
+                LevelManager.getInstance().resetNumRestarts();
+                SceneManager.getInstance().showLevelSelectMenuScene();
             }
         });
     }
