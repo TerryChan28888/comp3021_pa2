@@ -33,6 +33,17 @@ public class LevelEditorCanvas extends Canvas {
      */
     public LevelEditorCanvas(int rows, int cols) {
         //TODO
+        super(Config.LEVEL_EDITOR_TILE_SIZE*rows, Config.LEVEL_EDITOR_TILE_SIZE*cols);
+        this.rows = rows;
+        this.cols = cols;
+        map=new Brush[cols][rows];
+        for(int i =0;i<rows;i++){
+            for(int j =0;j< cols;j++){
+//                System.out.print(i);System.out.print(j);System.out.println("");
+                map[j][i]=Brush.TILE;
+            }
+        }
+        renderCanvas();
     }
 
     /**
@@ -42,6 +53,7 @@ public class LevelEditorCanvas extends Canvas {
      * @param cols The numbers of cols in the map
      */
     public void changeSize(int rows, int cols) {
+//        System.out.println("problems in here?????");System.out.print(cols);
         this.rows = rows;
         this.cols = cols;
         resetMap(rows, cols);
@@ -56,6 +68,20 @@ public class LevelEditorCanvas extends Canvas {
      */
     private void resetMap(int rows, int cols) {
         //TODO
+        this.getGraphicsContext2D().clearRect(0,0,this.getWidth(),this.getHeight());
+//        this.setWidth(rows*Config.LEVEL_EDITOR_TILE_SIZE);
+//        this.setHeight(cols*Config.LEVEL_EDITOR_TILE_SIZE);
+
+        this.map = null;
+        this.map = new Brush[cols][rows];
+
+        for(int i =0;i<rows;i++){
+            for(int j =0;j< cols;j++){
+                System.out.print(i);System.out.print(j);System.out.println("");
+                map[j][i]=Brush.TILE;
+            }
+        }
+        renderCanvas();
     }
 
     /**
@@ -63,6 +89,7 @@ public class LevelEditorCanvas extends Canvas {
      */
     private void renderCanvas() {
         //TODO
+        MapRenderer.render(this,map);
     }
 
     /**

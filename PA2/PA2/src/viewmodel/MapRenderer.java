@@ -50,6 +50,30 @@ public class MapRenderer {
      */
     static void render(Canvas canvas, LevelEditorCanvas.Brush[][] map) {
         //TODO
+        int rows=map[0].length; int cols=map.length;
+        double canvas_height=cols*Config.LEVEL_EDITOR_TILE_SIZE; double canvas_width=rows*Config.LEVEL_EDITOR_TILE_SIZE;
+
+        canvas.setWidth(canvas_width);
+        canvas.setHeight(canvas_height);
+
+        for(int x =0; x< rows; x++){
+            for(int y = 0; y < cols; y++){
+                int dx = (int)(x*Config.LEVEL_EDITOR_TILE_SIZE);
+                int dy = (int)(y*Config.LEVEL_EDITOR_TILE_SIZE);
+//if(x>=5){System.out.println("huhhhh????");System.out.println(cols);}
+//                if(y>=5){System.out.println("rows problem?????");System.out.println(rows);}
+                if(map[y][x]==LevelEditorCanvas.Brush.TILE){canvas.getGraphicsContext2D().drawImage(tile, dx, dy);}
+                else if(map[y][x]==LevelEditorCanvas.Brush.PLAYER_ON_TILE){canvas.getGraphicsContext2D().drawImage(playerOnTile, dx, dy);}
+                else if(map[y][x]==LevelEditorCanvas.Brush.PLAYER_ON_DEST){canvas.getGraphicsContext2D().drawImage(playerOnDest, dx, dy);}
+                else if(map[y][x]==LevelEditorCanvas.Brush.CRATE_ON_TILE){canvas.getGraphicsContext2D().drawImage(crateOnTile, dx, dy);}
+                else if(map[y][x]==LevelEditorCanvas.Brush.CRATE_ON_DEST){canvas.getGraphicsContext2D().drawImage(crateOnDest, dx, dy);}
+                else if(map[y][x]==LevelEditorCanvas.Brush.WALL){canvas.getGraphicsContext2D().drawImage(wall, dx, dy);}
+                else if(map[y][x]==LevelEditorCanvas.Brush.DEST){canvas.getGraphicsContext2D().drawImage(dest, dx, dy);}
+
+            }
+
+        }
+
     }
 
     /**

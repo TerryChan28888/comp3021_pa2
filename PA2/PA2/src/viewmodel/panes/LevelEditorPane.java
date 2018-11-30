@@ -125,7 +125,19 @@ public class LevelEditorPane extends BorderPane {
         //TODO
         returnButton.setOnMouseClicked(e->{SceneManager.getInstance().showMainMenuScene();});
 
-newGridButton.setOnMouseClicked(()->{;});
+newGridButton.setOnMouseClicked(e->{
+    if(rowField.getText()!=null && colField.getText()!=null){
+
+
+        String rows_input = rowField.getCharacters().toString();
+        String cols_input = colField.getCharacters().toString();
+        int input_rows = Integer.parseInt(rows_input) ;
+        int input_cols = Integer.parseInt(cols_input);
+
+        levelEditor.changeSize(input_rows, input_cols);
+
+    }
+});
 
     }
 }
