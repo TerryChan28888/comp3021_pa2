@@ -80,15 +80,25 @@ public class SettingsPane extends BorderPane {
 
         //not finished, is it...?
         // work in AudioManager
-        if(AudioManager.getInstance().isEnabled()){
-//            System.out.print('a');
-            toggleSoundFXButton.setOnMouseClicked(e->{AudioManager.getInstance().setEnabled(false); toggleSoundFXButton.setText("Enable Sound FX");} );
-//            System.out.print('b');
-
-        }
-        else{
-            toggleSoundFXButton.setOnMouseClicked(e->{AudioManager.getInstance().setEnabled(true); toggleSoundFXButton.setText("Disable Sound FX");});
-        }
+//        if(AudioManager.getInstance().isEnabled()){
+////            System.out.print('a');
+//            toggleSoundFXButton.setOnMouseClicked(e->{AudioManager.getInstance().setEnabled(false); toggleSoundFXButton.setText("Enable Sound FX");} );
+////            System.out.print('b');
+//
+//        }
+//        else{
+//            toggleSoundFXButton.setOnMouseClicked(e->{AudioManager.getInstance().setEnabled(true); toggleSoundFXButton.setText("Disable Sound FX");});
+//        }
+        toggleSoundFXButton.setOnMouseClicked(e->{
+            if(AudioManager.getInstance().isEnabled())
+            {
+                AudioManager.getInstance().setEnabled(false);
+            toggleSoundFXButton.setText("Enable Sound FX");
+            }else{
+                AudioManager.getInstance().setEnabled(true);
+                toggleSoundFXButton.setText("Disable Sound FX");
+            }
+        } );
 
 
     }

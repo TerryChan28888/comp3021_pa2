@@ -46,6 +46,31 @@ public class AudioManager {
      */
     private void playFile(String name) {
         //TODO
+        if(enabled){
+            if(name.equals("move")){
+                Media media = new Media(AudioManager.class.getResource("/assets/audio/move.mp3").toString());
+                MediaPlayer mediaPlayer = new MediaPlayer(media);
+                soundPool.add(mediaPlayer);
+                mediaPlayer.play();
+                mediaPlayer.setOnEndOfMedia(()->{soundPool.clear();mediaPlayer.dispose();});
+            }
+            else if(name.equals("win")){
+                Media media = new Media(AudioManager.class.getResource("/assets/audio/win.mp3").toString());
+                MediaPlayer mediaPlayer = new MediaPlayer(media);
+                soundPool.add(mediaPlayer);
+                mediaPlayer.play();
+                mediaPlayer.setOnEndOfMedia(()->{soundPool.clear();mediaPlayer.dispose();});
+            }
+            else if(name.equals("deadlock")){
+                Media media = new Media(AudioManager.class.getResource("/assets/audio/deadlock.mp3").toString());
+                MediaPlayer mediaPlayer = new MediaPlayer(media);
+                soundPool.add(mediaPlayer);
+                mediaPlayer.play();
+                mediaPlayer.setOnEndOfMedia(()->{soundPool.clear();mediaPlayer.dispose();});
+            }
+
+        }
+        else{return;}
     }
 
     public void playMoveSound() {

@@ -115,43 +115,49 @@ this.setOnKeyPressed(
                 case W :
 //                    LevelManager.getInstance().getGameLevel().getMap().movePlayer(Map.Direction.UP);System.out.println('W');
                 if( LevelManager.getInstance().getGameLevel().makeMove('w') ){
+                    AudioManager.getInstance().playMoveSound();
                     renderCanvas();
 //                    LevelManager.getInstance().incrementNumRestarts();
                     if( LevelManager.getInstance().getGameLevel().isWin() ){
+                        AudioManager.getInstance().playWinSound();
                         LevelManager.getInstance().resetLevelTimer();
                         createLevelClearPopup();
 
 //                        LevelManager.getInstance().resetNumRestarts();
                     }
-                    else if( LevelManager.getInstance().getGameLevel().isDeadlocked() ){createDeadlockedPopup();}
+                    else if( LevelManager.getInstance().getGameLevel().isDeadlocked() ){AudioManager.getInstance().playDeadlockSound();createDeadlockedPopup();}
                 }
                 break;
                 case S :
 //                    LevelManager.getInstance().getGameLevel().getMap().movePlayer(Map.Direction.DOWN);System.out.println('S');
                     if( LevelManager.getInstance().getGameLevel().makeMove('s') ){
+                        AudioManager.getInstance().playMoveSound();
                         renderCanvas();
 //                        LevelManager.getInstance().incrementNumRestarts();
                         if( LevelManager.getInstance().getGameLevel().isWin() ){
+                            AudioManager.getInstance().playWinSound();
                             LevelManager.getInstance().resetLevelTimer();
                             createLevelClearPopup();
 
 //                            LevelManager.getInstance().resetNumRestarts();
                         }
-                        else if( LevelManager.getInstance().getGameLevel().isDeadlocked() ){createDeadlockedPopup();}
+                        else if( LevelManager.getInstance().getGameLevel().isDeadlocked() ){AudioManager.getInstance().playDeadlockSound();createDeadlockedPopup();}
                     }
                 break;
                 case D :
 //                    LevelManager.getInstance().getGameLevel().getMap().movePlayer(Map.Direction.RIGHT);System.out.println('D');
                     if( LevelManager.getInstance().getGameLevel().makeMove('d') ){
+                        AudioManager.getInstance().playMoveSound();
                         renderCanvas();
 //                        LevelManager.getInstance().incrementNumRestarts();
                         if( LevelManager.getInstance().getGameLevel().isWin() ){
+                            AudioManager.getInstance().playWinSound();
                             LevelManager.getInstance().resetLevelTimer();
                             createLevelClearPopup();
 
 //                            LevelManager.getInstance().resetNumRestarts();
                         }
-                        else if( LevelManager.getInstance().getGameLevel().isDeadlocked() ){createDeadlockedPopup();}
+                        else if( LevelManager.getInstance().getGameLevel().isDeadlocked() ){AudioManager.getInstance().playDeadlockSound();createDeadlockedPopup();}
                     }break;
                 case A :
 //                    System.out.println( LevelManager.getInstance().getGameLevel().getMap().player.getC()  );
@@ -163,15 +169,17 @@ this.setOnKeyPressed(
 //                    System.out.println( LevelManager.getInstance().getGameLevel().getMap().player.getR()  );
 
                     if( LevelManager.getInstance().getGameLevel().makeMove('a') ){
+                        AudioManager.getInstance().playMoveSound();
                         renderCanvas();
 //                        LevelManager.getInstance().incrementNumRestarts();
                         if( LevelManager.getInstance().getGameLevel().isWin() ){
+                            AudioManager.getInstance().playWinSound();
                             LevelManager.getInstance().resetLevelTimer();
                             createLevelClearPopup();
 
 //                            LevelManager.getInstance().resetNumRestarts();
                         }
-                        else if( LevelManager.getInstance().getGameLevel().isDeadlocked() ){createDeadlockedPopup();}
+                        else if( LevelManager.getInstance().getGameLevel().isDeadlocked() ){AudioManager.getInstance().playDeadlockSound();createDeadlockedPopup();}
                     }break;
             }
         }
