@@ -228,7 +228,7 @@ this.setOnKeyPressed(
                 doRestartAction();
             }
             else if (response == return_button){
-                System.out.print("return!!!!!!!!!waghhhhhhhhhhhhh!!!!!!!!!");
+//                System.out.print("return!!!!!!!!!waghhhhhhhhhhhhh!!!!!!!!!");
                 LevelManager.getInstance().getGameLevel().numPushesProperty().set(0);
                 gamePlayCanvas.getGraphicsContext2D().clearRect(0,0,gamePlayCanvas.getWidth(),gamePlayCanvas.getHeight());
                 LevelManager.getInstance().resetNumRestarts();

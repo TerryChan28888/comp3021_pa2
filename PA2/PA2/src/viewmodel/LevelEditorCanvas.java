@@ -3,6 +3,7 @@ package viewmodel;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Alert;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -68,17 +69,19 @@ public class LevelEditorCanvas extends Canvas {
      */
     private void resetMap(int rows, int cols) {
         //TODO
+        oldPlayerRow = -1;
+        oldPlayerCol = -1;
         this.getGraphicsContext2D().clearRect(0,0,this.getWidth(),this.getHeight());
 //        this.setWidth(rows*Config.LEVEL_EDITOR_TILE_SIZE);
 //        this.setHeight(cols*Config.LEVEL_EDITOR_TILE_SIZE);
 
         this.map = null;
-        this.map = new Brush[cols][rows];
+        this.map = new Brush[rows][cols];
 
         for(int i =0;i<rows;i++){
             for(int j =0;j< cols;j++){
-                System.out.print(i);System.out.print(j);System.out.println("");
-                map[j][i]=Brush.TILE;
+//                System.out.print(i);System.out.print(j);System.out.println("");
+                map[i][j]=Brush.TILE;
             }
         }
         renderCanvas();
@@ -113,6 +116,65 @@ public class LevelEditorCanvas extends Canvas {
      */
     public void setTile(Brush brush, double x, double y) {
         //TODO
+        int selected_row = (int)x/Config.LEVEL_EDITOR_TILE_SIZE;
+        int selected_col = (int)y/Config.LEVEL_EDITOR_TILE_SIZE;
+
+//        int num_player =0;
+
+//        for(int i =0; x< rows; x++){
+//            for(int j = 0; y < cols; y++){
+//                if(){}
+//
+//            }
+//        }
+
+        if(oldPlayerRow==-1 && (brush==Brush.PLAYER_ON_DEST||brush==Brush.PLAYER_ON_TILE) ){
+//            System.out.print(oldPlayerCol);
+//            num_player++;
+            map[selected_col][selected_row]=brush;
+            oldPlayerCol=selected_col;
+            oldPlayerRow=selected_row;
+
+        }
+
+
+
+        else if(oldPlayerRow!=-1 && brush==Brush.PLAYER_ON_TILE ){
+            if(map[oldPlayerCol][oldPlayerRow]==Brush.PLAYER_ON_DEST){
+                map[oldPlayerCol][oldPlayerRow]=Brush.DEST;
+                map[selected_col][selected_row]=brush;
+                oldPlayerCol=selected_col;
+                oldPlayerRow=selected_row;
+            }else if(map[oldPlayerCol][oldPlayerRow]==Brush.PLAYER_ON_TILE){
+                map[oldPlayerCol][oldPlayerRow]=Brush.TILE;
+                map[selected_col][selected_row]=brush;
+                oldPlayerCol=selected_col;
+                oldPlayerRow=selected_row;
+            }
+        }
+        else if(oldPlayerRow!=-1 && brush==Brush.PLAYER_ON_DEST ){
+            if(map[oldPlayerCol][oldPlayerRow]==Brush.PLAYER_ON_DEST){
+                map[oldPlayerCol][oldPlayerRow]=Brush.DEST;
+                map[selected_col][selected_row]=brush;
+                oldPlayerCol=selected_col;
+                oldPlayerRow=selected_row;
+            }else if(map[oldPlayerCol][oldPlayerRow]==Brush.PLAYER_ON_TILE){
+                map[oldPlayerCol][oldPlayerRow]=Brush.TILE;
+                map[selected_col][selected_row]=brush;
+                oldPlayerCol=selected_col;
+                oldPlayerRow=selected_row;
+            }
+        }
+        else if( selected_col==oldPlayerCol && selected_row==oldPlayerRow && (map[selected_col][selected_row]!=Brush.PLAYER_ON_TILE||map[selected_col][selected_row]!=Brush.PLAYER_ON_DEST) ){
+            oldPlayerCol=-1;
+            oldPlayerRow=-1;
+            map[selected_col][selected_row]=brush;
+        }
+        else{map[selected_col][selected_row]=brush;}
+
+
+        renderCanvas();
+
     }
 
     /**
@@ -121,6 +183,25 @@ public class LevelEditorCanvas extends Canvas {
      */
     public void saveToFile() {
         //TODO
+        try{
+            if(isInvalidMap()){
+                File file = getTargetSaveDirectory();
+                if(file!=null ){
+
+                    PrintWriter writer = new PrintWriter(file);
+                    writer.print(map.length);writer.println();
+                    writer.print(map[0].length);writer.println();
+                    for(int x =0; x< map.length; x++){
+                        for(int y = 0; y < map[0].length; y++){
+                            writer.print(map[x][y].rep);
+                        }
+                        writer.println();
+                    }
+                    writer.close();
+                }
+            }
+
+        }catch(FileNotFoundException e){}
     }
 
     /**
@@ -132,7 +213,12 @@ public class LevelEditorCanvas extends Canvas {
      */
     private File getTargetSaveDirectory() {
         //TODO
-        return null;//NOTE: You may also need to modify this line
+//        return null;//NOTE: You may also need to modify this line
+        FileChooser filechooser = new FileChooser();
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Normal text file", "*.txt");
+        filechooser.getExtensionFilters().add(extFilter);
+        Stage stage = new Stage();
+        return filechooser.showSaveDialog(stage);
     }
 
     /**
@@ -149,7 +235,52 @@ public class LevelEditorCanvas extends Canvas {
      */
     private boolean isInvalidMap() {
         //TODO
-        return true;//NOTE: You may also need to modify this line
+//        return true;//NOTE: You may also need to modify this line
+//        System.out.println('a');
+        int num_crate=0;int num_dest=0;
+        int num_player=0;
+        for(int x =0; x< map.length; x++){
+            for(int y = 0; y < map[0].length; y++){
+                switch(map[x][y]){
+                    case DEST : num_dest++;break;
+                    case PLAYER_ON_DEST: num_dest++;num_player++;break;
+                    case CRATE_ON_TILE: num_crate++;break;
+                    case CRATE_ON_DEST: num_crate++;num_dest++;break;
+                    case PLAYER_ON_TILE: num_player++;break;
+                }
+            }
+        }
+
+        if(!(map[0].length>=3&&map.length>=3)) {
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Minimum size is 3 rows and 3 cols.");
+            alert.setTitle("Error");
+            alert.setHeaderText("Could not save map!");
+            alert.showAndWait();
+        }
+        else if(num_player<1) {
+            System.out.println(num_player);
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Please add a player.");
+            alert.setTitle("Error");
+            alert.setHeaderText("Could not save map!");
+            alert.showAndWait();
+        }
+        else if(num_crate<1 ||num_dest<1) {
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Please create at least 1 crate and destination.");
+            alert.setTitle("Error");
+            alert.setHeaderText("Could not save map!");
+            alert.showAndWait();
+        }
+
+        else if(num_crate!=num_dest) {
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Imbalanced number of crates and destinations.");
+            alert.setTitle("Error");
+            alert.setHeaderText("Could not save map!");
+            alert.showAndWait();
+        }
+
+
+        return (map[0].length>=3&&map.length>=3) && (oldPlayerRow!=-1&&oldPlayerCol!=-1)
+                && (num_crate==num_dest) && (num_crate>0) &&(num_dest>0) ;
     }
 
     /**

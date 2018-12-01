@@ -9,7 +9,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.layout.HBox;
 import viewmodel.Config;
 import viewmodel.LevelEditorCanvas;
 import viewmodel.SceneManager;
@@ -51,7 +50,7 @@ public class LevelEditorPane extends BorderPane {
         returnButton = new Button("Return");
         rowText = new Label("Rows");
         rowField = new NumberTextField("5");
-        colText = new Label("Cols");
+        colText = new Label("Columns");
         colField = new NumberTextField("5");
         rowBox=new BorderPane();
         colBox=new BorderPane();
@@ -125,19 +124,20 @@ public class LevelEditorPane extends BorderPane {
         //TODO
         returnButton.setOnMouseClicked(e->{SceneManager.getInstance().showMainMenuScene();});
 
-newGridButton.setOnMouseClicked(e->{
-    if(rowField.getText()!=null && colField.getText()!=null){
+        newGridButton.setOnMouseClicked(e->{
+            if(rowField.getText()!=null && colField.getText()!=null){
 
 
-        String rows_input = rowField.getCharacters().toString();
-        String cols_input = colField.getCharacters().toString();
-        int input_rows = Integer.parseInt(rows_input) ;
-        int input_cols = Integer.parseInt(cols_input);
+                String rows_input = rowField.getCharacters().toString();
+                String cols_input = colField.getCharacters().toString();
+                int input_rows = Integer.parseInt(rows_input) ;
+                int input_cols = Integer.parseInt(cols_input);
 
-        levelEditor.changeSize(input_rows, input_cols);
+                levelEditor.changeSize(input_rows, input_cols);
+            }
+        });
 
-    }
-});
-
+        levelEditor.setOnMouseClicked(e->{levelEditor.setTile(selectedBrush.getSelectionModel().getSelectedItem(), e.getX(), e.getY());});
+        saveButton.setOnMouseClicked(e->levelEditor.saveToFile());
     }
 }

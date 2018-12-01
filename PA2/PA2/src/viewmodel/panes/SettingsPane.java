@@ -66,8 +66,8 @@ public class SettingsPane extends BorderPane {
         returnButton.getStyleClass().add("big-button");
         toggleSoundFXButton.getStyleClass().add("big-button");
         centerContainer.getStyleClass().add("big-vbox");
-//        infoText.setEditable(false);
-//        infoText.setWrapText(true);
+        infoText.setEditable(false);
+        infoText.setWrapText(true);
     }
 
     /**
