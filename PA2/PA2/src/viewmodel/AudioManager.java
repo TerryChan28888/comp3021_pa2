@@ -44,31 +44,108 @@ public class AudioManager {
      *
      * @param name the name of the sound file to be played, excluding .mp3
      */
+
+
     private void playFile(String name) {
         //TODO
         if(enabled){
-            if(name.equals("move")){
-                Media media = new Media(AudioManager.class.getResource("/assets/audio/move.mp3").toString());
-                MediaPlayer mediaPlayer = new MediaPlayer(media);
-                soundPool.add(mediaPlayer);
-                mediaPlayer.play();
-                mediaPlayer.setOnEndOfMedia(()->{soundPool.clear();mediaPlayer.dispose();});
-            }
-            else if(name.equals("win")){
-                Media media = new Media(AudioManager.class.getResource("/assets/audio/win.mp3").toString());
-                MediaPlayer mediaPlayer = new MediaPlayer(media);
-                soundPool.add(mediaPlayer);
-                mediaPlayer.play();
-                mediaPlayer.setOnEndOfMedia(()->{soundPool.clear();mediaPlayer.dispose();});
-            }
-            else if(name.equals("deadlock")){
-                Media media = new Media(AudioManager.class.getResource("/assets/audio/deadlock.mp3").toString());
-                MediaPlayer mediaPlayer = new MediaPlayer(media);
-                soundPool.add(mediaPlayer);
-                mediaPlayer.play();
-                mediaPlayer.setOnEndOfMedia(()->{soundPool.clear();mediaPlayer.dispose();});
-            }
+//            Media media;
+//            MediaPlayer mediaPlayer;
+//            if(name.equals("move")){
+//                media = new Media(AudioManager.class.getResource("/assets/audio/move.mp3").toString());
+//                 mediaPlayer = new MediaPlayer(media);
+//            }
+//            else if(name.equals("win")){
+//                media = new Media(AudioManager.class.getResource("/assets/audio/win.mp3").toString());
+//                 mediaPlayer = new MediaPlayer(media);
+//            }
+//            else {
+//                media = new Media(AudioManager.class.getResource("/assets/audio/deadlock.mp3").toString());
+//                mediaPlayer = new MediaPlayer(media);
+//
+//            }
+//            soundPool.add(mediaPlayer);
+//            mediaPlayer.play();
+//            mediaPlayer.setOnEndOfMedia(()->{soundPool.clear();mediaPlayer.dispose();});
 
+
+
+            if(name.equals("move")) {
+                Media media;
+                MediaPlayer mediaPlayer;
+                media = new Media(AudioManager.class.getResource("/assets/audio/move.mp3").toString());
+                mediaPlayer = new MediaPlayer(media);
+                soundPool.add(mediaPlayer);
+                mediaPlayer.play();
+
+
+                mediaPlayer.setOnEndOfMedia(() -> { soundPool.clear(); mediaPlayer.dispose();});
+
+            }
+            if(name.equals("win")) {
+                Media media;
+                MediaPlayer mediaPlayer;
+                media = new Media(AudioManager.class.getResource("/assets/audio/win.mp3").toString());
+                mediaPlayer = new MediaPlayer(media);
+
+                soundPool.add(mediaPlayer);
+
+
+                var thread = new Thread(
+                        () -> { soundPool.clear();
+                            mediaPlayer.dispose(); }
+                );
+
+//                try {
+//                thread.sleep(2000);
+                    mediaPlayer.play();
+//                    if(mediaPlayer.getStatus()== MediaPlayer.Status.PLAYING){System.out.println("my god ... how come...");thread.sleep(2000);}
+//                thread.join();
+//                    System.out.println("Current Thread: " + Thread.currentThread().getName());
+//                } catch (InterruptedException e) {}
+
+                thread.setDaemon(true);
+
+                mediaPlayer.setOnEndOfMedia(thread);
+//                soundPool.add(mediaPlayer);
+//                mediaPlayer.play();
+//
+//                var thread = new Thread(
+//                        () -> {soundPool.clear();
+//                            mediaPlayer.dispose();}
+//                );
+//                thread.setDaemon(true);
+//                thread.setPriority(Thread.MAX_PRIORITY);
+//                mediaPlayer.setOnEndOfMedia(thread);
+//                try {
+//                    thread.join();
+//                } catch (InterruptedException e) {}
+            }
+            else if(name.equals("deadlock"))
+            {
+                Media media;
+                MediaPlayer mediaPlayer;
+                media = new Media(AudioManager.class.getResource("/assets/audio/deadlock.mp3").toString());
+                mediaPlayer = new MediaPlayer(media);
+
+                soundPool.add(mediaPlayer);
+
+                mediaPlayer.play();
+                var thread = new Thread(
+                        () -> { soundPool.clear();
+                            mediaPlayer.dispose(); }
+                );
+//                try {
+
+
+//                    if(mediaPlayer.getStatus()== MediaPlayer.Status.PLAYING){mediaPlayer.play();System.out.println("my god ... how come...");thread.sleep(2000);}
+
+//                    System.out.println("Current Thread: " + Thread.currentThread().getName());
+//                } catch (InterruptedException e) {}
+
+                thread.setDaemon(true);
+                mediaPlayer.setOnEndOfMedia(thread);
+            }
         }
         else{return;}
     }

@@ -114,10 +114,12 @@ public class LevelSelectPane extends BorderPane {
 ////                                LevelManager.getInstance().getMapDirectory()+"\\"  +
 //                                        levelsListView.getSelectionModel().getSelectedItem()
 //                        );}catch(InvalidMapException ex){ex.printStackTrace();}
+//                        levelPreview.getGraphicsContext2D().clearRect(0,0,levelPreview.getWidth(),levelPreview.getHeight());
                         LevelManager.getInstance().currentLevelNameProperty().setValue(levelsListView.getSelectionModel().getSelectedItem());
 //                        System.out.println(levelsListView.getSelectionModel().getSelectedItem()) ;
                         SceneManager.getInstance().showGamePlayScene();
                         LevelManager.getInstance().startLevelTimer();
+
                     }
             );
 

@@ -267,38 +267,56 @@ this.setOnKeyPressed(
 
 //        next_level.setOnAction()
 
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "", next_level, return_button);
-        alert.setTitle("Confirm");
-        alert.setHeaderText("Level cleared!");
-        alert.showAndWait().ifPresent(response -> {
-            if (response == next_level) {
+        if (LevelManager.getInstance().getNextLevelName() == null){
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "", return_button);
+            alert.setTitle("Confirm");
+            alert.setHeaderText("Level cleared!");
+            alert.showAndWait().ifPresent(response -> {
 
-                try{
+//                 if (response == return_button){
+
                     LevelManager.getInstance().getGameLevel().numPushesProperty().set(0);
-                    LevelManager.getInstance().setLevel(
-                            LevelManager.getInstance().getNextLevelName()
+                    gamePlayCanvas.getGraphicsContext2D().clearRect(0,0,gamePlayCanvas.getWidth(),gamePlayCanvas.getHeight());
+                    LevelManager.getInstance().resetNumRestarts();
+                    SceneManager.getInstance().showLevelSelectMenuScene();
+//                }
+            });
 
-                    );
-                    renderCanvas();
+        }
+        else {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "", next_level, return_button);
+            alert.setTitle("Confirm");
+            alert.setHeaderText("Level cleared!");
+            alert.showAndWait().ifPresent(response -> {
+                if (response == next_level) {
 
-                }
-                catch(InvalidMapException ex){ex.printStackTrace();}
+                    try {
+                        LevelManager.getInstance().getGameLevel().numPushesProperty().set(0);
+                        LevelManager.getInstance().setLevel(
+                                LevelManager.getInstance().getNextLevelName()
 
-                catch(Exception ex){ex.printStackTrace();}
-                LevelManager.getInstance().resetNumRestarts();
+                        );
+                        renderCanvas();
+
+                    } catch (InvalidMapException ex) {
+                        ex.printStackTrace();
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                    LevelManager.getInstance().resetNumRestarts();
 //                LevelManager.getInstance().resetLevelTimer();
-                LevelManager.getInstance().startLevelTimer();
+                    LevelManager.getInstance().startLevelTimer();
 //                System.out.println("did the timer started????");
 //                System.out.println("it's nest level!!!!!!!!huh!!!!!!");
-            }
-            else if (response == return_button){
-                System.out.print("return!!!!!!!!!waghhhhhhhhhhhhh!!!!!!!!!");
-                LevelManager.getInstance().getGameLevel().numPushesProperty().set(0);
-                gamePlayCanvas.getGraphicsContext2D().clearRect(0,0,gamePlayCanvas.getWidth(),gamePlayCanvas.getHeight());
-                LevelManager.getInstance().resetNumRestarts();
-                SceneManager.getInstance().showLevelSelectMenuScene();
-            }
-        });
+                } else if (response == return_button) {
+//                System.out.print("return!!!!!!!!!waghhhhhhhhhhhhh!!!!!!!!!");
+                    LevelManager.getInstance().getGameLevel().numPushesProperty().set(0);
+                    gamePlayCanvas.getGraphicsContext2D().clearRect(0, 0, gamePlayCanvas.getWidth(), gamePlayCanvas.getHeight());
+                    LevelManager.getInstance().resetNumRestarts();
+                    SceneManager.getInstance().showLevelSelectMenuScene();
+                }
+            });
+        }
     }
 
     /**

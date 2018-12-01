@@ -36,71 +36,48 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="10407" />
+          <entry key="java" value="10988" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="10407" />
+          <entry key="JAVA" value="10988" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PA2/PA2/src/viewmodel/panes/GameplayPane.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="311">
-              <caret line="175" column="70" selection-start-line="175" selection-start-column="70" selection-end-line="175" selection-end-column="70" />
+            <state relative-caret-position="2482">
+              <caret line="330" column="12" lean-forward="true" selection-start-line="330" selection-start-column="12" selection-end-line="330" selection-end-column="12" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#6334#6444#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/PA2/PA2/src/viewmodel/AudioManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="79" column="28" selection-start-line="79" selection-start-column="16" selection-end-line="79" selection-end-column="28" />
+            <state relative-caret-position="187">
+              <caret line="132" column="35" selection-start-line="132" selection-start-column="35" selection-end-line="132" selection-end-column="35" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#1574#1600#0" />
+                <element signature="e#3425#3470#0" />
+                <element signature="e#4962#4985#0" />
+                <element signature="e#5482#5483#0" expanded="true" />
+                <element signature="e#5514#5515#0" expanded="true" />
+                <element signature="e#5548#5549#0" expanded="true" />
+                <element signature="e#5579#5580#0" expanded="true" />
+                <element signature="e#5618#5619#0" expanded="true" />
+                <element signature="e#5654#5655#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PA2/PA2/src/viewmodel/panes/SettingsPane.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="91" column="50" lean-forward="true" selection-start-line="91" selection-start-column="50" selection-end-line="91" selection-end-column="50" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PA2/PA2/src/viewmodel/MapRenderer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="30" column="59" lean-forward="true" selection-start-line="30" selection-start-column="59" selection-end-line="30" selection-end-column="84" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PA2/PA2/src/assets/css/styles.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="40" column="1" selection-start-line="40" selection-start-column="1" selection-end-line="40" selection-end-column="11" />
             </state>
           </provider>
         </entry>
@@ -108,10 +85,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PA2/PA2/src/viewmodel/panes/LevelSelectPane.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="131">
-              <caret line="250" column="43" selection-start-line="250" selection-start-column="39" selection-end-line="250" selection-end-column="43" />
+            <state relative-caret-position="182">
+              <caret line="107" column="41" lean-forward="true" selection-start-line="107" selection-start-column="41" selection-end-line="107" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#3751#3786#0" />
                 <element signature="e#5193#5353#0" />
               </folding>
             </state>
@@ -121,13 +99,15 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PA2/PA2/src/model/LevelManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="468">
-              <caret line="72" column="38" lean-forward="true" selection-start-line="72" selection-start-column="38" selection-end-line="72" selection-end-column="38" />
+            <state relative-caret-position="172">
+              <caret line="157" column="31" lean-forward="true" selection-start-line="157" selection-start-column="31" selection-end-line="157" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#2770#2821#0" />
                 <element signature="e#3118#3217#0" />
                 <element signature="e#3967#4015#0" />
+                <element signature="e#6306#6574#0" expanded="true" />
+                <element signature="e#6573#6574#0" expanded="true" />
                 <element signature="e#6989#6990#0" expanded="true" />
                 <element signature="e#7067#7068#0" expanded="true" />
                 <element signature="e#7205#7206#0" expanded="true" />
@@ -145,11 +125,9 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>format</find>
       <find>clean</find>
       <find>player</find>
       <find>clear</find>
-      <find>levelPreview</find>
       <find>System</find>
       <find>renderCanvas</find>
       <find>numPushesProperty</find>
@@ -166,7 +144,6 @@
       <find>startLevelTimer</find>
       <find>levelsListView</find>
       <find>Direction</find>
-      <find>timer</find>
       <find>dead</find>
       <find>new Timer</find>
       <find>resetleveltimer</find>
@@ -175,6 +152,9 @@
       <find>wrap</find>
       <find>print</find>
       <find>load</find>
+      <find>daemon</find>
+      <find>levelPreview</find>
+      <find>timer</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -185,14 +165,14 @@
         <option value="$PROJECT_DIR$/PA2/PA2/src/viewmodel/customNodes/GameplayInfoPane.java" />
         <option value="$PROJECT_DIR$/PA2/PA2/src/model/Map/Map.java" />
         <option value="$PROJECT_DIR$/PA2/PA2/src/viewmodel/panes/MainMenuPane.java" />
-        <option value="$PROJECT_DIR$/PA2/PA2/src/model/LevelManager.java" />
-        <option value="$PROJECT_DIR$/PA2/PA2/src/viewmodel/panes/LevelSelectPane.java" />
         <option value="$PROJECT_DIR$/PA2/PA2/src/viewmodel/MapRenderer.java" />
         <option value="$PROJECT_DIR$/PA2/PA2/src/viewmodel/panes/LevelEditorPane.java" />
         <option value="$PROJECT_DIR$/PA2/PA2/src/viewmodel/LevelEditorCanvas.java" />
         <option value="$PROJECT_DIR$/PA2/PA2/src/viewmodel/panes/SettingsPane.java" />
-        <option value="$PROJECT_DIR$/PA2/PA2/src/viewmodel/AudioManager.java" />
         <option value="$PROJECT_DIR$/PA2/PA2/src/viewmodel/panes/GameplayPane.java" />
+        <option value="$PROJECT_DIR$/PA2/PA2/src/viewmodel/panes/LevelSelectPane.java" />
+        <option value="$PROJECT_DIR$/PA2/PA2/src/model/LevelManager.java" />
+        <option value="$PROJECT_DIR$/PA2/PA2/src/viewmodel/AudioManager.java" />
       </list>
     </option>
   </component>
@@ -313,7 +293,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543642651791" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543659091469" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
   </component>
@@ -360,12 +340,12 @@
       <option name="presentableId" value="Default" />
       <updated>1542786194468</updated>
       <workItem from="1542786198146" duration="158985000" />
-      <workItem from="1543551525443" duration="23513000" />
+      <workItem from="1543551525443" duration="37653000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="182498000" />
+    <option name="totallyTimeSpent" value="196638000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -619,42 +599,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PA2/PA2/src/viewmodel/panes/LevelSelectPane.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="131">
-          <caret line="250" column="43" selection-start-line="250" selection-start-column="39" selection-end-line="250" selection-end-column="43" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#5193#5353#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/PA2/PA2/src/viewmodel/Config.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" column="21" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PA2/PA2/src/model/LevelManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="72" column="38" lean-forward="true" selection-start-line="72" selection-start-column="38" selection-end-line="72" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2770#2821#0" />
-            <element signature="e#3118#3217#0" />
-            <element signature="e#3967#4015#0" />
-            <element signature="e#6989#6990#0" expanded="true" />
-            <element signature="e#7067#7068#0" expanded="true" />
-            <element signature="e#7205#7206#0" expanded="true" />
-            <element signature="e#7251#7252#0" expanded="true" />
-            <element signature="e#8113#8114#0" expanded="true" />
-            <element signature="e#8163#8164#0" expanded="true" />
-            <element signature="e#8227#8228#0" expanded="true" />
-            <element signature="e#8273#8274#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -678,22 +626,67 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PA2/PA2/src/viewmodel/AudioManager.java">
+    <entry file="file://$PROJECT_DIR$/PA2/PA2/src/viewmodel/panes/LevelSelectPane.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="79" column="28" selection-start-line="79" selection-start-column="16" selection-end-line="79" selection-end-column="28" />
+        <state relative-caret-position="182">
+          <caret line="107" column="41" lean-forward="true" selection-start-line="107" selection-start-column="41" selection-end-line="107" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#3751#3786#0" />
+            <element signature="e#5193#5353#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PA2/PA2/src/model/LevelManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="157" column="31" lean-forward="true" selection-start-line="157" selection-start-column="31" selection-end-line="157" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2770#2821#0" />
+            <element signature="e#3118#3217#0" />
+            <element signature="e#3967#4015#0" />
+            <element signature="e#6306#6574#0" expanded="true" />
+            <element signature="e#6573#6574#0" expanded="true" />
+            <element signature="e#6989#6990#0" expanded="true" />
+            <element signature="e#7067#7068#0" expanded="true" />
+            <element signature="e#7205#7206#0" expanded="true" />
+            <element signature="e#7251#7252#0" expanded="true" />
+            <element signature="e#8113#8114#0" expanded="true" />
+            <element signature="e#8163#8164#0" expanded="true" />
+            <element signature="e#8227#8228#0" expanded="true" />
+            <element signature="e#8273#8274#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/PA2/PA2/src/viewmodel/panes/GameplayPane.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
-          <caret line="175" column="70" selection-start-line="175" selection-start-column="70" selection-end-line="175" selection-end-column="70" />
+        <state relative-caret-position="2482">
+          <caret line="330" column="12" lean-forward="true" selection-start-line="330" selection-start-column="12" selection-end-line="330" selection-end-column="12" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#6334#6444#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PA2/PA2/src/viewmodel/AudioManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="132" column="35" selection-start-line="132" selection-start-column="35" selection-end-line="132" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1574#1600#0" />
+            <element signature="e#3425#3470#0" />
+            <element signature="e#4962#4985#0" />
+            <element signature="e#5482#5483#0" expanded="true" />
+            <element signature="e#5514#5515#0" expanded="true" />
+            <element signature="e#5548#5549#0" expanded="true" />
+            <element signature="e#5579#5580#0" expanded="true" />
+            <element signature="e#5618#5619#0" expanded="true" />
+            <element signature="e#5654#5655#0" expanded="true" />
           </folding>
         </state>
       </provider>

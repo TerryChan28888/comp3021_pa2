@@ -147,20 +147,18 @@ for(Object l : new_levelNames){levelNames.add(l.toString());}
      * {@link javafx.application.Platform#runLater(Runnable)} are required
      */
     public void startLevelTimer() {
-        t = new Timer(true); // this line makes the timer works after "next level", perhaps because cancel() in resettimer() is executed after run() in this method
+//        t = new Timer(true); // this line makes the timer works after "next level", perhaps because cancel() in resettimer() is executed after run() in this method
 
         //TODO
 //        System.out.println("time machine success start!!!!!!!!");
-        t.scheduleAtFixedRate(new TimerTask() {
+        t.scheduleAtFixedRate(
+
+                new TimerTask() {
             @Override
             public void run() {
+
                 Platform.runLater(  ()->{curGameLevelExistedDuration.setValue(curGameLevelExistedDuration.getValue()+1);}  );
 
-//                System.out.print('a');
-//                System.out.println();
-//                System.out.println(curGameLevelExistedDuration);
-//
-//
             }
         }, 1000,1000);
     }
@@ -172,7 +170,8 @@ for(Object l : new_levelNames){levelNames.add(l.toString());}
         t.cancel();
 
 
-//        t = new Timer(true);
+        t = new Timer(true);
+
     }
 
     /**
@@ -199,16 +198,20 @@ for(Object l : new_levelNames){levelNames.add(l.toString());}
 //        if( == ){}
         String lastElement = null;
         if (!levelNames.isEmpty()) {
+
             lastElement = levelNames.get(levelNames.size() - 1);
+
         }
 
-        int i =0;
-        for(; i<levelNames.size();i++){
-            if(curLevelNameProperty.get()==levelNames.get(i)){break;}
-        }
+//        int i =0;
+//        for(; i<levelNames.size();i++){
+//            if(curLevelNameProperty.get()==levelNames.get(i)){break;}
+//        }
+
+        int level_index = levelNames.indexOf(curLevelNameProperty.get());
 
         if(curLevelNameProperty.get() == lastElement){return null;}//NOTE: You may also change this line
-        else{return levelNames.get(i+1);}
+        else{return levelNames.get(level_index+1);}
     }
 
     public IntegerProperty curGameLevelExistedDurationProperty() {
