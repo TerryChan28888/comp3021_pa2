@@ -1,14 +1,18 @@
 package model.Map;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import model.Exceptions.InvalidMapException;
 import model.Exceptions.InvalidNumberOfPlayersException;
 import model.Exceptions.UnknownElementException;
+import model.LevelManager;
 import model.Map.Occupant.Crate;
 import model.Map.Occupant.Player;
 import model.Map.Occupiable.DestTile;
 import model.Map.Occupiable.Occupiable;
 import model.Map.Occupiable.Tile;
 import viewmodel.LevelEditorCanvas;
+import viewmodel.SceneManager;
 
 import java.util.ArrayList;
 
@@ -159,6 +163,7 @@ public class Map {
                 }
             }
         }
+
         return false;
     }
 
@@ -218,8 +223,10 @@ public class Map {
         }
 
         return cells[r][c] instanceof Occupiable &&
-                (!((Occupiable) cells[r][c]).getOccupant().isPresent()
-                        || !(((Occupiable) cells[r][c]).getOccupant().get() instanceof Crate));
+                (
+                         !((Occupiable) cells[r][c]).getOccupant().isPresent()
+                        ||
+                !(((Occupiable) cells[r][c]).getOccupant().get() instanceof Crate));
     }
 
     public enum Direction {

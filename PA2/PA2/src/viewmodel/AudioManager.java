@@ -82,31 +82,32 @@ public class AudioManager {
                 mediaPlayer.setOnEndOfMedia(() -> { soundPool.clear(); mediaPlayer.dispose();});
 
             }
-            if(name.equals("win")) {
+            else if(name.equals("win")) {
                 Media media;
                 MediaPlayer mediaPlayer;
                 media = new Media(AudioManager.class.getResource("/assets/audio/win.mp3").toString());
                 mediaPlayer = new MediaPlayer(media);
 
                 soundPool.add(mediaPlayer);
+                mediaPlayer.play();
 
-
-                var thread = new Thread(
-                        () -> { soundPool.clear();
-                            mediaPlayer.dispose(); }
-                );
+//                var thread = new Thread(
+//                        () -> { soundPool.clear();
+//                            mediaPlayer.dispose(); }
+//                );
 
 //                try {
 //                thread.sleep(2000);
-                    mediaPlayer.play();
+
 //                    if(mediaPlayer.getStatus()== MediaPlayer.Status.PLAYING){System.out.println("my god ... how come...");thread.sleep(2000);}
 //                thread.join();
 //                    System.out.println("Current Thread: " + Thread.currentThread().getName());
 //                } catch (InterruptedException e) {}
 
-                thread.setDaemon(true);
-
-                mediaPlayer.setOnEndOfMedia(thread);
+//                thread.setDaemon(true);
+//                thread.start();
+                mediaPlayer.setOnEndOfMedia(                        () -> { soundPool.clear();
+                    mediaPlayer.dispose(); });
 //                soundPool.add(mediaPlayer);
 //                mediaPlayer.play();
 //
@@ -130,21 +131,24 @@ public class AudioManager {
 
                 soundPool.add(mediaPlayer);
 
+
+//                var thread = new Thread(
+//                        () -> { soundPool.clear();
+//                            mediaPlayer.dispose(); }
+//                );
+////                try {
+//
+//
+////                    if(mediaPlayer.getStatus()== MediaPlayer.Status.PLAYING){mediaPlayer.play();System.out.println("my god ... how come...");thread.sleep(2000);}
+//
+////                    System.out.println("Current Thread: " + Thread.currentThread().getName());
+////                } catch (InterruptedException e) {}
+//
+//                thread.setDaemon(true);
+//                thread.start();
                 mediaPlayer.play();
-                var thread = new Thread(
-                        () -> { soundPool.clear();
-                            mediaPlayer.dispose(); }
-                );
-//                try {
-
-
-//                    if(mediaPlayer.getStatus()== MediaPlayer.Status.PLAYING){mediaPlayer.play();System.out.println("my god ... how come...");thread.sleep(2000);}
-
-//                    System.out.println("Current Thread: " + Thread.currentThread().getName());
-//                } catch (InterruptedException e) {}
-
-                thread.setDaemon(true);
-                mediaPlayer.setOnEndOfMedia(thread);
+                mediaPlayer.setOnEndOfMedia( () ->  {soundPool.clear();
+                            mediaPlayer.dispose();} ) ;
             }
         }
         else{return;}
